@@ -1,10 +1,7 @@
 package com.kushal.Place.Booking.System.booking;
 
 import com.kushal.Place.Booking.System.booking.bookingstatus.BookingStatus;
-import com.kushal.Place.Booking.System.exception.BookingNotFoundException;
-import com.kushal.Place.Booking.System.exception.InvalidBookingStateException;
-import com.kushal.Place.Booking.System.exception.PlaceNotFoundException;
-import com.kushal.Place.Booking.System.exception.UserNotFoundException;
+import com.kushal.Place.Booking.System.exception.*;
 import com.kushal.Place.Booking.System.place.PlaceEntity;
 import com.kushal.Place.Booking.System.place.PlaceRepository;
 import com.kushal.Place.Booking.System.slot.SlotEntity;
@@ -37,14 +34,23 @@ public class BookingService {
     }
 
     @Transactional
-    public BookingEntity createBooking(Integer userId, Integer placeId, Integer slotID) throws IOException {
+    public BookingEntity createBooking(Integer userId, Integer placeId, Integer slotID){
         Optional<UserEntity> uId =  userRepository.findById(userId);
         Optional<SlotEntity> sId = slotRepository.findById(slotID);
         Optional<PlaceEntity> pId = placeRepository.findById(placeId);
         BookingEntity bookingEntity = new BookingEntity();
 
-        if(uId.isPresent() && sId.isPresent() && pId.isPresent() && sId.get().getAvailable().equals(true)
-                && sId.get().getPlaceEntity().getId().equals(pId.get().getId())){
+        if(uId.isEmpty()) {
+            throw new UserNotFoundException();
+        } else if (sId.isEmpty()){
+            throw new SlotNotFoundException();
+        } else if (!pId.isPresent()) {
+            throw new PlaceNotFoundException();
+        } else if (!sId.get().getAvailable().equals(true)) {
+            throw new SlotNotAvailableException();
+        } else if (!sId.get().getPlaceEntity().getId().equals(pId.get().getId())){
+            throw new InvalidBookingStateException();
+        } else{
             bookingEntity.setUserEntity(uId.get());
             bookingEntity.setPlaceEntity(pId.get());
             bookingEntity.setSlotEntity(sId.get());
@@ -53,8 +59,6 @@ public class BookingService {
             slotEntity.setAvailable(false);
             slotRepository.save(slotEntity);
             bookingRepository.save(bookingEntity);
-        } else{
-            throw new IOException();
         }
         return bookingEntity;
     }
