@@ -1,4 +1,4 @@
-package com.kushal.Place.Booking.System.dto;
+package com.kushal.Place.Booking.System.booking.dto;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;

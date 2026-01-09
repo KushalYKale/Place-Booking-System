@@ -1,4 +1,4 @@
-package com.kushal.Place.Booking.System.dto;
+package com.kushal.Place.Booking.System.booking.dto;
 
 import com.kushal.Place.Booking.System.booking.BookingEntity;
 import com.kushal.Place.Booking.System.booking.bookingstatus.BookingStatus;
@@ -7,12 +7,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Optional;
 
 @Data
-@Getter
-@Setter
 public class BookingResponseDTO {
 
     private Integer bookingId;

@@ -10,7 +10,8 @@ public enum ErrorMessages {
     SLOT_NOT_FOUND(HttpStatus.NOT_FOUND,"Slot Not Found"),
     INVALID_BOOKING_STATE(HttpStatus.CONFLICT,"Booking Is Invalid Please Try Again"),
     SLOT_NOT_AVAILABLE(HttpStatus.CONFLICT,"The Selected Slot is Not Available Check Again "),
-    VALIDATION_FAILED(HttpStatus.BAD_REQUEST, "Invalid request data");
+    VALIDATION_FAILED(HttpStatus.BAD_REQUEST, "Invalid request data"),
+    USER_ALREADY_EXIST(HttpStatus.CONFLICT,"User Already Exist");
 
 
     @Getter

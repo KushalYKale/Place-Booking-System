@@ -1,7 +1,6 @@
 package com.kushal.Place.Booking.System.booking;
 
 import com.kushal.Place.Booking.System.booking.bookingstatus.BookingStatus;
-import com.kushal.Place.Booking.System.dto.BookingResponseDTO;
 import com.kushal.Place.Booking.System.exception.*;
 import com.kushal.Place.Booking.System.place.PlaceEntity;
 import com.kushal.Place.Booking.System.place.PlaceRepository;
@@ -12,8 +11,6 @@ import com.kushal.Place.Booking.System.user.UserRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 

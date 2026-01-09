@@ -1,12 +1,11 @@
 package com.kushal.Place.Booking.System.booking;
 
-import com.kushal.Place.Booking.System.dto.BookingResponseDTO;
-import com.kushal.Place.Booking.System.dto.CreateBookingRequestDTO;
+import com.kushal.Place.Booking.System.booking.dto.BookingResponseDTO;
+import com.kushal.Place.Booking.System.booking.dto.CreateBookingRequestDTO;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 public class BookingController {
