@@ -1,8 +1,8 @@
 package com.kushal.Place.Booking.System.exception;
 
-public class SlotNotAvailableException extends RuntimeException{
+public class SlotNotAvailableException extends BaseDomainException{
     public SlotNotAvailableException(){
-        super(ErrorMessages.SLOT_NOT_AVAILABLE.getMessage());
+        super(ErrorMessages.SLOT_NOT_AVAILABLE);
     }
 
 }
