@@ -1,6 +1,7 @@
 package com.kushal.Place.Booking.System.booking;
 
 import com.kushal.Place.Booking.System.booking.bookingstatus.BookingStatus;
+import com.kushal.Place.Booking.System.dto.BookingResponseDTO;
 import com.kushal.Place.Booking.System.exception.*;
 import com.kushal.Place.Booking.System.place.PlaceEntity;
 import com.kushal.Place.Booking.System.place.PlaceRepository;
@@ -80,8 +81,9 @@ public class BookingService {
         return bId.get();
     }
 
-    public Optional<BookingEntity> getBookingById(Integer bookingId) {
-        return bookingRepository.findById(bookingId);
+    public BookingEntity getBookingById(Integer bookingId) {
+        return bookingRepository.findById(bookingId)
+                .orElseThrow(BookingNotFoundException::new);
     }
 
     public List<BookingEntity> getBookingsByUser(Integer userId){
