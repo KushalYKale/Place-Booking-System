@@ -4,6 +4,8 @@ import com.kushal.Place.Booking.System.exception.PlaceAlreadyExistException;
 import com.kushal.Place.Booking.System.exception.PlaceNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -22,6 +24,7 @@ public class PlaceService {
         PlaceEntity placeEntity = new PlaceEntity();
         placeEntity.setName(name);
         placeEntity.setCapacity(capacity);
+        placeEntity.setActive(true);
         placeRepository.save(placeEntity);
 
         return placeEntity;
@@ -39,4 +42,10 @@ public class PlaceService {
         if(!placeIdCheck.isPresent()) throw new PlaceNotFoundException();
     }
 
+    public List<PlaceEntity> getAllPlaces() {
+        return placeRepository.findAll()
+                .stream()
+                .filter(PlaceEntity::isActive)
+                .toList();
+    }
 }

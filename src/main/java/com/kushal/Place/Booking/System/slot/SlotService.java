@@ -6,6 +6,8 @@ import com.kushal.Place.Booking.System.place.PlaceService;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -71,6 +73,12 @@ public class SlotService {
         SlotEntity slot = getSlotById(slotId);
         slot.setAvailable(false);
         slotRepository.save(slot);
+    }
+
+    public List<SlotEntity> getSlotsByPlace(Integer placeId) {
+        PlaceEntity place = placeService.getPlaceById(placeId);
+
+        return slotRepository.findByPlaceEntity(place);
     }
 }
 

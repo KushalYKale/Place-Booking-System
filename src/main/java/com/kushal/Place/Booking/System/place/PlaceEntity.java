@@ -27,4 +27,10 @@ public class PlaceEntity {
     @CreationTimestamp
     private LocalDateTime createdAt;
 
+    private Boolean active;
+
+    public Boolean isActive() {
+        return active;
+    }
+
 }

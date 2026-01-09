@@ -1,10 +1,12 @@
 package com.kushal.Place.Booking.System.slot;
 
+import com.kushal.Place.Booking.System.place.PlaceEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public interface SlotRepository extends JpaRepository<SlotEntity, Integer> {
 
@@ -20,4 +22,8 @@ public interface SlotRepository extends JpaRepository<SlotEntity, Integer> {
             @Param("startTime") LocalDateTime startTime,
             @Param("endTime") LocalDateTime endTime
     );
+
+    List<SlotEntity> findByPlaceEntity(PlaceEntity placeEntity);
+
+
 }
